@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 5</title>
+    <style>
+        body{
+            background-color: yellow;
+            margin: 0px;
+            padding: 0px;
+            display: flex;
+            
+            justify-content: center;
+        }
+        *{
+            box-sizing: border-box;
+        }
+        .Main{
+            line-height: 10rem;
+           
+        }
+        .Main input{
+            width: 25rem;
+            height: 2.5rem;
+            padding: 0px 5px;
+            border: 10px solid rgb(218, 207, 207);
+            border-radius: 20rem;
+        }
+        .suggestions{
+            align-items: center;
+            justify-content: center;
+          
+            padding-bottom: 20px;
+            box-sizing: border-box;
+            overflow: auto;
+        }
+        #suggest{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            background-color: white;
+            position: absolute;
+             width:25rem;
+            overflow: auto;
+            border: 1px solid black;
+            list-style: none;
+            perspective: 1000px;
+        }
+        .suggestions ul li{
+          
+            margin-bottom: 3px;
+            height: 2rem;
+            color: red;
+            height: 1rem;
+             border: 1px solid black;
+             padding: 5px 10px 5px 10px;
+             transform: rotate3d(90deg);
+        }
+        
+    </style>
+</head>
+<body>
+
+        <div class="Main">
+            <input type="text" name="" id="enter" placeholder="Enter City">
+            <div class="suggestions">
+                <ul id="suggest">
+                   
+                </ul>
+            </div>
+        </div>
+
+
+
+
+
+    <script>
+        let constant = 'https://gist.githubusercontent.com/kinlane/c10819f59d0ecd87b6eed4ff691ce7f8/raw/4f6127d162c5d0b0b0f60b03a2b68ee66cdfc489/cities.json';
+       
+        let shubham = [];
+        fetch(constant)
+        .then(blob => blob.json())
+        .then(data=> shubham.push(...data));
+            
+
+        function findMatches(wordToMatch , cities){
+            return shubham.filter(place=>{
+                const regex = new RegExp(wordToMatch,'gi');
+                return place.city.match(regex)||place.state.match(regex)              
+            });
+            
+        }
+        function displayMatches(){
+            const final = findMatches(this.value,shubham);
+            const html = final.map(place=>{
+                return  `
+                    <li>
+                        ${place.city}
+                    </li>
+                `
+             }).join('');
+           suggest.innerHTML=html;
+           console.log(html);
+        }
+        const searchInput = document.getElementById("enter");
+        const suggest= document.getElementById("suggest");
+        searchInput.addEventListener('change', displayMatches );
+        searchInput.addEventListener('keyup', displayMatches );
+       
+    
+        
+        
+
+    </script>    
+</body>
+</html>
