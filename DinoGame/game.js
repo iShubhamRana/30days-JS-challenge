@@ -3,7 +3,8 @@ cross=0;
 backMusic = new Audio('2019-10-30_-_Action_Rhythms_-_David_Fesliyan.mp3');
 laugh = new Audio ('Children_Laughing-Mike_Koenig-575083331-[AudioTrimmer.com].mp3');
 roar = new Audio ('Tyrannosaurus Rex-SoundBible.com-2136096676 (1).mp3');
-   backMusic.play();
+backMusic.currentTime = 0; 
+backMusic.play();
 document.addEventListener("keydown", function f( e){
     let dino = document.querySelector(".dino");
     console.log(e.keyCode);

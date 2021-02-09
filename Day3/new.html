@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array</title>
+</head>
+<body>
+    <h1>Shubham</h1>
+    <script>
+       let inventors = [
+           {first:'Albert' ,last:'Enistein' , year:1879 , passed:1955},
+           {first:'shubham',last:'Rana' , year:2001 , passed:2101},
+           {first:'Nandani' ,last:'Rana' , year:1998 , passed:2098},
+           {first: 'Anita',last:'Rana' , year:2001 , passed:1999},
+           {first: 'kuldeep',last:'Rana' , year:1985 , passed:5000},
+       ];
+       const people = [ 'shubham , Rana','shubham2 , Sharma', 'shubham3 , Kumar', 'shubham4 , Jha' , 'shubham5 , nano' , 'shubham6, bedi' , 'shubham7, singh'];
+       const required = inventors.filter( inventor =>
+             inventor.year>2000
+       );
+      const fullNames = inventors.map( inventor=> inventor.first + inventor.last);
+      const ordered = inventors.sort(function(a,b){
+          if (a.year>b.year) return -1;
+          else return  1;
+      })
+      // sort by by who lived the most
+
+      const oldest = inventors.sort ( (a,b)=>( (a.passed-a.year) -(b.passed-b.year) >0  ) ?1 :-1
+            
+
+      )
+      sorted = people.sort(function (last,present){
+          const [part1 , part2] = last.split(", ");
+          const [parta , partb] = present.split(", ");
+            return part1>parta  ? -1 :1;         
+      })
+  
+      const data = ['car','bike','truck','car', 'bus','bike'];
+      
+      const transportation = data.reduce(function (object,item){
+                if (!item[object]){
+                    item[object]=0;
+                }
+        item[object]++;
+        return item;
+      }, {})
+      console.log(transportation)
+    </script>
+</body>
+</html>
