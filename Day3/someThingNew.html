@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Something New</title>
+    <style>
+        :root{
+            --base: yellow;
+            --spacing: 10px;
+            --blur:10px;
+        }
+        img{
+            width:500px;
+            height:400px;
+              margin-left: 100px;
+              margin-top: 100px;
+              
+              opacity: 1;
+              padding: var(--spacing);
+              background: var(--base);
+              filter: blur(var(--blur));
+            }
+    </style>
+</head>
+<body>
+    <h2>Update CSS variable with <span class="h1">JS</span></h2>
+    <div class="controls">
+        <label for="spacing">Spacing:</label>
+        <input type="range" name="spacing" min="10" max="200" value="10" data-sizing="px"></Input>
+        <label for="blur">Blur:</label>
+        <input type="range" name="blur" min="0" max="25" value="10" data-sizing="px"></Input>
+        <label for="base">Base Color:</label>
+        <input type="color" name="base"  ></Input>
+        
+    </div>
+    <img src="logo.jpeg" alt="image here">
+    <script>
+       const inputs = document.querySelectorAll(".controls input");
+       function shubham(){
+           let suffix = this.dataset.sizing||"";
+           document.documentElement.style.setProperty(`--${this.name}`, this.value +suffix )
+       }
+      
+       inputs.forEach( element => element.addEventListener("click",shubham));
+       inputs.forEach( element => element.addEventListener("mousemove",shubham));
+       
+    </script>
+</body>
+</html>
